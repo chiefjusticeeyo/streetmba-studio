@@ -843,6 +843,171 @@
     .sidebar { width: 100%; min-width: unset; height: 200px; }
     .episode-console { padding: 16px; }
   }
+
+  /* ===== REVISION AREA ===== */
+  .revision-area {
+    margin-top: 14px;
+    background: rgba(21,101,192,0.08);
+    border: 1px solid rgba(21,101,192,0.25);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+  }
+  .revision-label {
+    font-size: 11px; font-weight: 800; letter-spacing: 1px;
+    text-transform: uppercase; color: #64B5F6; margin-bottom: 8px;
+  }
+  .revision-area textarea {
+    width: 100%; background: var(--grey); border: 1px solid var(--grey2);
+    border-radius: var(--radius-sm); color: var(--white);
+    font-family: var(--font-body); font-size: 13px;
+    padding: 10px 14px; outline: none; resize: vertical;
+    min-height: 72px; transition: var(--transition);
+  }
+  .revision-area textarea:focus { border-color: var(--yellow); }
+  .revision-area textarea::placeholder { color: var(--grey3); }
+  .btn-revise {
+    margin-top: 8px;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 16px; border-radius: var(--radius-sm);
+    background: rgba(21,101,192,0.25); border: 1px solid rgba(21,101,192,0.5);
+    color: #64B5F6; font-family: var(--font-ui); font-size: 13px;
+    font-weight: 700; cursor: pointer; letter-spacing: 0.5px;
+    transition: var(--transition); text-transform: uppercase;
+  }
+  .btn-revise:hover { background: var(--blue); color: var(--white); border-color: var(--blue); }
+  .btn-revise:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* ===== GROUNDING SOURCES PANEL ===== */
+  .sources-panel {
+    margin-top: 14px;
+    border: 1px solid rgba(202,255,0,0.2);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .sources-panel-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 14px; background: rgba(202,255,0,0.07);
+    cursor: pointer; font-size: 12px; font-weight: 700;
+    color: var(--yellow); user-select: none;
+  }
+  .sources-panel-header:hover { background: rgba(202,255,0,0.12); }
+  .grounding-badge {
+    font-size: 10px; font-weight: 800; letter-spacing: 0.8px;
+    background: rgba(202,255,0,0.15); color: var(--yellow);
+    border: 1px solid rgba(202,255,0,0.3); border-radius: 10px;
+    padding: 2px 8px; margin-left: 8px;
+  }
+  .sources-panel-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(.4,0,.2,1);
+    padding: 0 14px;
+  }
+  .sources-panel-body.open { max-height: 600px; padding: 10px 14px; }
+  .source-item {
+    display: flex; align-items: flex-start; gap: 8px;
+    padding: 6px 0; border-bottom: 1px solid var(--grey2);
+  }
+  .source-item:last-child { border-bottom: none; }
+  .source-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--yellow); margin-top: 5px; flex-shrink: 0;
+  }
+  .source-item a { color: var(--white); text-decoration: none; font-size: 12px; font-weight: 600; }
+  .source-item a:hover { color: var(--yellow); }
+  .search-query-chip {
+    display: inline-block; background: var(--grey); border: 1px solid var(--grey2);
+    border-radius: 12px; padding: 3px 10px; font-size: 11px;
+    color: var(--white); font-weight: 600;
+  }
+
+  /* ===== SLIDE CAROUSEL ===== */
+  .slide-carousel-section { margin-top: 16px; }
+  .slide-carousel-label {
+    font-size: 11px; font-weight: 800; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--grey3); margin-bottom: 8px;
+  }
+  .carousel-frame {
+    border: 1px solid var(--grey2); border-radius: var(--radius-sm); overflow: hidden;
+  }
+  .carousel-nav {
+    display: flex; align-items: center; gap: 12px;
+    padding: 8px 14px; background: var(--grey);
+    border-bottom: 1px solid var(--grey2);
+  }
+  .carousel-nav button {
+    background: var(--grey2); border: none; color: var(--white);
+    width: 28px; height: 28px; border-radius: 6px;
+    cursor: pointer; font-size: 13px; transition: var(--transition);
+  }
+  .carousel-nav button:hover:not(:disabled) { background: var(--yellow); color: var(--black); }
+  .carousel-nav button:disabled { opacity: 0.3; cursor: not-allowed; }
+  .carousel-counter { font-size: 12px; font-weight: 700; color: var(--grey3); flex: 1; text-align: center; }
+  .slide-display {
+    min-height: 160px; padding: 20px 24px;
+    display: flex; flex-direction: column; gap: 10px;
+    transition: background 0.25s ease;
+  }
+  .slide-display.slide-title { background: var(--yellow); color: var(--black); }
+  .slide-display.slide-content { background: #F5FFB0; color: var(--black); }
+  .slide-display.slide-accent { background: var(--black); color: var(--white); }
+  .slide-display.slide-casestudy { background: #F5FFB0; color: var(--black); border-left: 5px solid var(--red); }
+  .slide-display.slide-exam { background: var(--blue); color: var(--white); }
+  .slide-display.slide-quiz { background: var(--yellow); color: var(--black); }
+  .slide-type-badge {
+    font-size: 10px; font-weight: 800; letter-spacing: 1.5px;
+    text-transform: uppercase; opacity: 0.65;
+  }
+  .slide-headline {
+    font-family: var(--font-display); font-size: 18px; line-height: 1.2;
+  }
+  .slide-body ul { margin-left: 16px; font-size: 12px; font-weight: 600; line-height: 1.7; }
+  .slide-visual-tag {
+    font-size: 11px; font-weight: 700; opacity: 0.7; margin-top: 4px;
+  }
+
+  /* ===== WORKSPACE QUICK-LINKS BAR ===== */
+  .workspace-bar {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;
+  }
+  .workspace-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 6px 12px; border-radius: var(--radius-sm);
+    font-family: var(--font-ui); font-size: 12px; font-weight: 700;
+    letter-spacing: 0.3px; text-decoration: none;
+    border: 1px solid var(--grey2); transition: var(--transition);
+    cursor: pointer;
+  }
+  .workspace-link.flow { color: var(--yellow); border-color: rgba(202,255,0,0.3); background: rgba(202,255,0,0.07); }
+  .workspace-link.flow:hover { background: rgba(202,255,0,0.15); border-color: var(--yellow); }
+  .workspace-link.gemini { color: #64B5F6; border-color: rgba(21,101,192,0.3); background: rgba(21,101,192,0.07); }
+  .workspace-link.gemini:hover { background: rgba(21,101,192,0.2); border-color: #64B5F6; }
+  .workspace-link.slides { color: #FFB74D; border-color: rgba(255,152,0,0.3); background: rgba(255,152,0,0.07); }
+  .workspace-link.slides:hover { background: rgba(255,152,0,0.15); border-color: #FFB74D; }
+  .workspace-link.youtube { color: #EF9A9A; border-color: rgba(232,39,42,0.3); background: rgba(232,39,42,0.07); }
+  .workspace-link.youtube:hover { background: rgba(232,39,42,0.15); border-color: var(--red); }
+
+  /* ===== TOGGLE SWITCH ===== */
+  .toggle-row {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 12px 0; border-bottom: 1px solid var(--grey2);
+  }
+  .toggle-row:last-child { border-bottom: none; }
+  .tr-info { flex: 1; }
+  .tr-label { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 3px; }
+  .tr-hint { font-size: 11px; color: var(--grey3); line-height: 1.5; }
+  .toggle-switch { flex-shrink: 0; position: relative; width: 44px; height: 24px; cursor: pointer; }
+  .toggle-switch input { opacity: 0; width: 0; height: 0; position: absolute; }
+  .toggle-slider {
+    position: absolute; inset: 0; background: var(--grey2);
+    border-radius: 12px; transition: 0.25s;
+  }
+  .toggle-slider::before {
+    content: ''; position: absolute;
+    width: 18px; height: 18px; left: 3px; top: 3px;
+    background: var(--white); border-radius: 50%; transition: 0.25s;
+  }
+  .toggle-switch input:checked + .toggle-slider { background: var(--yellow); }
+  .toggle-switch input:checked + .toggle-slider::before { transform: translateX(20px); background: var(--black); }
 </style>
 </head>
 <body>
@@ -981,6 +1146,20 @@
               <div>Click "Generate Research Brief" to begin</div>
             </div>
           </div>
+          <!-- Grounding Sources Panel -->
+          <div class="sources-panel" id="sourcesPanel1" style="display:none;">
+            <div class="sources-panel-header" onclick="toggleSourcesPanel(1)">
+              <span>🔍 Live Research Sources <span class="grounding-badge">GOOGLE SEARCH GROUNDED</span></span>
+              <span id="sourcesChevron1">▼</span>
+            </div>
+            <div class="sources-panel-body" id="sourcesPanelBody1"></div>
+          </div>
+          <!-- Revision Feedback -->
+          <div class="revision-area" id="revisionArea1" style="display:none;">
+            <div class="revision-label">💬 Revision Feedback</div>
+            <textarea id="revisionInput1" placeholder="Describe what to change — e.g. &quot;Add more CBN sources on FX volatility&quot; or &quot;Include a Nairaland Alaba Market testimony angle&quot;..."></textarea>
+            <button class="btn-revise" id="reviseBtn1" onclick="generateRevision(1)">🔁 Revise Brief</button>
+          </div>
           <div style="margin-top:14px;">
             <div class="course-label" style="font-size:11px;font-weight:800;letter-spacing:1px;color:var(--grey3);text-transform:uppercase;margin-bottom:8px;">Producer Verification Checklist</div>
             <div class="checklist" id="checklist1">
@@ -1035,6 +1214,12 @@
               <div>Generate Stage 1 Research Brief first, then click "Generate Full Script"</div>
             </div>
           </div>
+          <!-- Revision Feedback -->
+          <div class="revision-area" id="revisionArea2" style="display:none;">
+            <div class="revision-label">💬 Revision Feedback</div>
+            <textarea id="revisionInput2" placeholder="Describe what to change — e.g. &quot;Hanson's opening dilemma needs more tension&quot; or &quot;Iliya's Street Quiz Q2 needs a Kano market example&quot;..."></textarea>
+            <button class="btn-revise" id="reviseBtn2" onclick="generateRevision(2)">🔁 Revise Script</button>
+          </div>
           <div style="margin-top:14px;">
             <div class="course-label" style="font-size:11px;font-weight:800;letter-spacing:1px;color:var(--grey3);text-transform:uppercase;margin-bottom:8px;">Script Freeze Checklist</div>
             <div class="checklist">
@@ -1077,6 +1262,27 @@
               <div>Approve the script first, then generate the slide map</div>
             </div>
           </div>
+          <!-- Visual Slide Preview Carousel -->
+          <div class="slide-carousel-section" id="slideCarouselSection" style="display:none;">
+            <div class="slide-carousel-label">🖼️ Visual Slide Preview</div>
+            <div class="carousel-frame">
+              <div class="carousel-nav">
+                <button id="carouselPrev" onclick="carouselNav(-1)">◀</button>
+                <span class="carousel-counter" id="carouselCounter">Slide 1 of 1</span>
+                <button id="carouselNext" onclick="carouselNav(1)">▶</button>
+              </div>
+              <div id="slideDisplay" class="slide-display slide-title">
+                <div class="slide-type-badge">TITLE</div>
+                <div class="slide-headline">Generate slide map to preview</div>
+              </div>
+            </div>
+          </div>
+          <!-- Revision Feedback -->
+          <div class="revision-area" id="revisionArea3" style="display:none;">
+            <div class="revision-label">💬 Revision Feedback</div>
+            <textarea id="revisionInput3" placeholder="Describe what to change — e.g. &quot;Add a Dangote Case Study slide before the Exam Edge&quot; or &quot;Move the CONCEPT UNLOCK slide earlier&quot;..."></textarea>
+            <button class="btn-revise" id="reviseBtn3" onclick="generateRevision(3)">🔁 Revise Slide Map</button>
+          </div>
           <div style="margin-top:14px;">
             <div class="course-label" style="font-size:11px;font-weight:800;letter-spacing:1px;color:var(--grey3);text-transform:uppercase;margin-bottom:8px;">Slide Freeze Checklist</div>
             <div class="checklist">
@@ -1109,6 +1315,13 @@
           </div>
 
           <div class="tab-panel active" id="tab-audio">
+            <!-- Workspace Quick-Links -->
+            <div class="workspace-bar">
+              <a class="workspace-link flow" href="https://flow.google.com" target="_blank">🎬 Google Flow ↗</a>
+              <a class="workspace-link gemini" href="https://gemini.google.com" target="_blank">✨ Gemini ↗</a>
+              <a class="workspace-link slides" href="https://slides.google.com" target="_blank">🖼️ Google Slides ↗</a>
+              <a class="workspace-link youtube" href="https://studio.youtube.com" target="_blank">▶️ YouTube Studio ↗</a>
+            </div>
             <div class="hint-box">
               Generates <strong>Gemini Omni voice-direction prompts</strong> for each host — ready to paste into the Gemini app or Google Flow for AI voice generation. Includes per-host voice profile, Nigerian accent and delivery notes, pacing markers, and code-switching cues. Also outputs <strong>host avatar prompts</strong> (create Hanson, Yemisi &amp; Iliya once in Google Flow → reuse across all 35 episodes for consistent character appearance). <strong>Hanson = deliberate &amp; authoritative (Efik cadence)</strong> · <strong>Yemisi = energetic &amp; code-switching (Lagos energy)</strong> · <strong>Iliya = precise &amp; calm (Jos systems thinker)</strong>.
             </div>
@@ -1122,6 +1335,12 @@
                 <div class="ph-icon">🎬</div>
                 <div>Approve the slides first, then generate Stage 4 outputs</div>
               </div>
+            </div>
+            <!-- Revision Feedback -->
+            <div class="revision-area" id="revisionArea4" style="display:none;">
+              <div class="revision-label">💬 Revision Feedback</div>
+              <textarea id="revisionInput4" placeholder="Describe what to change — e.g. &quot;Hanson's avatar prompt needs a Calabar backdrop&quot; or &quot;Add a lower-third for Apapa port&quot;..."></textarea>
+              <button class="btn-revise" id="reviseBtn4" onclick="generateRevision(4)">🔁 Revise Production Brief</button>
             </div>
           </div>
 
@@ -1260,6 +1479,21 @@
         4. Scope: tick <strong>public_repo</strong> only<br/>
         5. Click <strong>Generate token</strong> → copy &amp; paste here<br/><br/>
         <span style="color:var(--yellow);">⚡ Your token stays only in your browser. It is never committed to the repo.</span>
+      </div>
+    </div>
+
+    <!-- Generation Feature Toggles -->
+    <div class="form-group" style="margin-top:4px;">
+      <label>Generation Features</label>
+      <div class="toggle-row">
+        <div class="tr-info">
+          <div class="tr-label">🔍 Google Search Grounding</div>
+          <div class="tr-hint">Enables real-time web research during Stage 1 brief generation (Gemini provider only). Gemini searches Nigerian business news, CBN data, Nairametrics, and more live — then cites sources inline.</div>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="groundingToggle" onchange="saveFeatureToggles()">
+          <span class="toggle-slider"></span>
+        </label>
       </div>
     </div>
 
@@ -1739,6 +1973,11 @@ function loadSettings() {
   document.getElementById('githubPatInput').value = pat;
   document.getElementById('modelSelect').value    = model || 'gemini-2.5-flash-preview-05-20';
   document.getElementById('orModelSelect').value  = orModel;
+
+  // Restore feature toggles
+  const gt = document.getElementById('groundingToggle');
+  if (gt) gt.checked = (localStorage.getItem('smba_grounding') || '1') === '1';
+
   showStatus();
   if (!pat) setSyncStatus('offline');
   if (key || orKey) document.getElementById('apiNotice') && (document.getElementById('apiNotice').style.display = 'none');
@@ -1917,14 +2156,34 @@ function selectEpisode(id) {
 function restoreOutputs() {
   const ep = getEp(currentCourseId, currentEpisodeId);
   [1,2,3,4].forEach(s => {
-    if (ep.outputs[s]) {
-      setOutput(s, ep.outputs[s]);
-    } else {
-      resetOutput(s);
-    }
+    if (ep.outputs[s]) setOutput(s, ep.outputs[s]);
+    else resetOutput(s);
   });
   if (ep.outputs['4b']) setOutputRaw('output4b', ep.outputs['4b']);
   if (ep.outputs['4c']) setOutputRaw('output4c', ep.outputs['4c']);
+
+  // Restore new panels
+  const ra1 = document.getElementById('revisionArea1');
+  if (ra1) ra1.style.display = ep.outputs[1] ? '' : 'none';
+  const sp1 = document.getElementById('sourcesPanel1');
+  if (sp1) {
+    if (ep.outputs[1] && ep.groundingMeta) { buildSourcesPanel(ep.groundingMeta); sp1.style.display = ''; }
+    else sp1.style.display = 'none';
+  }
+  const ra2 = document.getElementById('revisionArea2');
+  if (ra2) ra2.style.display = ep.outputs[2] ? '' : 'none';
+  const ra3 = document.getElementById('revisionArea3');
+  if (ra3) ra3.style.display = ep.outputs[3] ? '' : 'none';
+  const carouselSec = document.getElementById('slideCarouselSection');
+  if (carouselSec) {
+    if (ep.outputs[3]) {
+      const slides = parseSlideMap(ep.outputs[3]);
+      if (slides.length > 0) { carouselState.slides = slides; carouselState.index = 0; renderCarouselSlide(); carouselSec.style.display = ''; }
+      else carouselSec.style.display = 'none';
+    } else carouselSec.style.display = 'none';
+  }
+  const ra4 = document.getElementById('revisionArea4');
+  if (ra4) ra4.style.display = ep.outputs[4] ? '' : 'none';
 }
 
 function resetOutput(s) {
@@ -2198,7 +2457,7 @@ Original error: ${msg}`;
   return `ERROR: ${msg}\n\nIf this keeps happening, open ⚙️ Settings and check your ${provider === 'openrouter' ? 'OpenRouter' : 'Gemini'} API key and model selection.`;
 }
 
-async function callGemini(systemPrompt, userPrompt) {
+async function callGemini(systemPrompt, userPrompt, useGrounding = false) {
   const key      = getApiKey();
   const model    = getModel();
   const provider = getProvider();
@@ -2267,21 +2526,26 @@ async function callGemini(systemPrompt, userPrompt) {
   } else {
     // ---- Google Gemini API ----
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
+    const body = {
+      system_instruction: { parts: [{ text: systemPrompt }] },
+      contents: [{ role: 'user', parts: [{ text: userPrompt }] }],
+      generationConfig: { temperature: 0.7, maxOutputTokens: 8192 }
+    };
+    // Add grounding if enabled
+    if (useGrounding) body.tools = [{ google_search: {} }];
     const resp = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        system_instruction: { parts: [{ text: systemPrompt }] },
-        contents: [{ role: 'user', parts: [{ text: userPrompt }] }],
-        generationConfig: { temperature: 0.7, maxOutputTokens: 8192 }
-      })
+      body: JSON.stringify(body)
     });
     if (!resp.ok) {
       const err = await resp.json().catch(() => ({}));
       throw new Error(err?.error?.message || `Gemini API error ${resp.status}`);
     }
     const data = await resp.json();
-    return data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    const groundingMeta = data?.candidates?.[0]?.groundingMetadata || null;
+    return { text, groundingMeta };
   }
 }
 
@@ -2346,15 +2610,25 @@ The brief must include:
 Use the approved local reference library. Be specific — named businesses, real naira figures, real market conditions.`;
 
     try {
-      const result = await callGemini(systemCtx, prompt);
+      const result = await callGemini(systemCtx, prompt, isGroundingEnabled() && getProvider() === 'gemini');
       if (!result) return;
-      ep.outputs[1] = result;
+      const text = (typeof result === 'object') ? result.text : result;
+      const groundingMeta = (typeof result === 'object') ? result.groundingMeta : null;
+      ep.outputs[1] = text;
+      ep.groundingMeta = groundingMeta;
       saveState();
-      setOutput(1, result);
+      setOutput(1, text);
       document.getElementById('status1').textContent = 'GENERATED';
       document.getElementById('status1').className = 'sh-status generated';
       updateStagePills();
       buildSidebar();
+      // Show revision area
+      document.getElementById('revisionArea1').style.display = '';
+      // Show grounding panel if data returned
+      if (groundingMeta) {
+        buildSourcesPanel(groundingMeta);
+        document.getElementById('sourcesPanel1').style.display = '';
+      }
       showToast('Research Brief generated! Review and approve.', 'success');
     } catch(e) {
       const msg = getApiErrorMessage(e);
@@ -2410,14 +2684,16 @@ Output the full script only. No introductory commentary.`;
     try {
       const result = await callGemini(systemCtx, prompt);
       if (!result) return;
-      ep.outputs[2] = result;
+      const text = (typeof result === 'object') ? result.text : result;
+      ep.outputs[2] = text;
       saveState();
-      setOutput(2, result);
+      setOutput(2, text);
       document.getElementById('status2').textContent = 'GENERATED';
       document.getElementById('status2').className = 'sh-status generated';
       updateStagePills();
       buildSidebar();
-      showToast('Full script generated! Review, freeze, and approve.', 'success');
+      document.getElementById('revisionArea2').style.display = '';
+      showToast('Full script generated! Review and approve.', 'success');
     } catch(e) {
       const msg = getApiErrorMessage(e);
       setOutput(2, msg);
@@ -2477,13 +2753,23 @@ Output the complete slide map only.`;
     try {
       const result = await callGemini(systemCtx, prompt);
       if (!result) return;
-      ep.outputs[3] = result;
+      const text = (typeof result === 'object') ? result.text : result;
+      ep.outputs[3] = text;
       saveState();
-      setOutput(3, result);
+      setOutput(3, text);
       document.getElementById('status3').textContent = 'GENERATED';
       document.getElementById('status3').className = 'sh-status generated';
       updateStagePills();
       buildSidebar();
+      document.getElementById('revisionArea3').style.display = '';
+      // Render slide carousel
+      const slides = parseSlideMap(text);
+      if (slides.length > 0) {
+        carouselState.slides = slides;
+        carouselState.index = 0;
+        renderCarouselSlide();
+        document.getElementById('slideCarouselSection').style.display = '';
+      }
       showToast('Slide map generated!', 'success');
     } catch(e) {
       const msg = getApiErrorMessage(e);
