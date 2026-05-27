@@ -1413,11 +1413,13 @@
       </div>
     </div>
 
+    <div id="providerWarning" style="display:none;background:rgba(232,39,42,0.14);border:1px solid rgba(232,39,42,0.3);border-radius:8px;padding:12px 14px;margin-bottom:16px;font-size:12px;line-height:1.5;color:#FFCDD2;"></div>
+
     <!-- GEMINI SECTION -->
     <div id="section-gemini">
       <div class="form-group">
         <label>Gemini API Key</label>
-        <input type="password" id="apiKeyInput" placeholder="AIza..." />
+        <input type="password" id="apiKeyInput" placeholder="AIza..." oninput="validateProviderKeyMatch(); showStatus()" />
         <div class="hint">Get your key at <a href="https://aistudio.google.com/app/apikey" target="_blank">aistudio.google.com</a>. Sign in &rarr; Create API key &rarr; paste here.</div>
       </div>
       <div class="form-group">
@@ -1439,7 +1441,7 @@
     <div id="section-openrouter" style="display:none;">
       <div class="form-group">
         <label>OpenRouter API Key</label>
-        <input type="password" id="orKeyInput" placeholder="sk-or-v1-..." />
+        <input type="password" id="orKeyInput" placeholder="sk-or-v1-..." oninput="validateProviderKeyMatch(); showStatus()" />
         <div class="hint">
           <strong>Get a free key:</strong> Go to <a href="https://openrouter.ai/keys" target="_blank">openrouter.ai/keys</a> &rarr; Sign up with Google &rarr; Create key &rarr; paste here.<br/><br/>
           <span style="color:var(--yellow);">⚡ Free models need NO payment at all. You can start generating immediately.</span>
@@ -1952,6 +1954,7 @@ function saveApiKey() {
     setSyncStatus('offline');
   }
   showStatus();
+  validateProviderKeyMatch();
   document.getElementById('apiNotice') && (document.getElementById('apiNotice').style.display = 'none');
 }
 
@@ -1979,6 +1982,7 @@ function loadSettings() {
   if (gt) gt.checked = (localStorage.getItem('smba_grounding') || '1') === '1';
 
   showStatus();
+  validateProviderKeyMatch();
   if (!pat) setSyncStatus('offline');
   if (key || orKey) document.getElementById('apiNotice') && (document.getElementById('apiNotice').style.display = 'none');
 }
@@ -1987,18 +1991,66 @@ function onProviderChange() {
   const provider = document.querySelector('input[name="provider"]:checked')?.value || 'gemini';
   document.getElementById('section-gemini').style.display     = provider === 'gemini'     ? '' : 'none';
   document.getElementById('section-openrouter').style.display = provider === 'openrouter' ? '' : 'none';
+  showStatus();
+  validateProviderKeyMatch();
 }
 
 function getProvider() { return localStorage.getItem('smba_provider') || 'gemini'; }
 
 function showStatus() {
-  const key = localStorage.getItem('smba_api_key') || '';
+  const provider = document.querySelector('input[name="provider"]:checked')?.value || getProvider();
+  const keyInputId = provider === 'openrouter' ? 'orKeyInput' : 'apiKeyInput';
+  const key = document.getElementById(keyInputId)?.value.trim() || '';
   const el = document.getElementById('apiStatus');
   if (key) {
-    el.innerHTML = '<span class="status-badge ok">✓ KEY SET</span>';
+    el.innerHTML = `<span class="status-badge ok">✓ ${provider === 'openrouter' ? 'OpenRouter' : 'Gemini'} key set</span>`;
   } else {
-    el.innerHTML = '<span class="status-badge err">✗ NOT SET</span>';
+    el.innerHTML = `<span class="status-badge err">✗ ${provider === 'openrouter' ? 'OpenRouter' : 'Gemini'} key missing</span>`;
   }
+}
+
+function validateProviderKeyMatch() {
+  const provider = document.querySelector('input[name="provider"]:checked')?.value || 'gemini';
+  const geminiKey = document.getElementById('apiKeyInput')?.value.trim() || '';
+  const orKey = document.getElementById('orKeyInput')?.value.trim() || '';
+  const el = document.getElementById('providerWarning');
+  if (!el) return;
+
+  let message = '';
+  let isWarning = false;
+
+  if (provider === 'gemini') {
+    if (!geminiKey && orKey) {
+      message = 'Gemini is selected, but only an OpenRouter API key is entered. Switch to OpenRouter or paste your Gemini API key and save.';
+      isWarning = true;
+    } else if (!geminiKey) {
+      message = 'Gemini is selected, but no Gemini API key is entered yet. Paste your Gemini key and save before generating.';
+      isWarning = true;
+    } else if (orKey) {
+      message = 'Gemini is selected and will be used. An OpenRouter key is also stored, but it is inactive until you switch providers.';
+    }
+  } else {
+    if (!orKey && geminiKey) {
+      message = 'OpenRouter is selected, but only a Gemini API key is entered. Switch to Gemini or paste your OpenRouter API key and save.';
+      isWarning = true;
+    } else if (!orKey) {
+      message = 'OpenRouter is selected, but no OpenRouter API key is entered yet. Paste your OpenRouter key and save before generating.';
+      isWarning = true;
+    } else if (geminiKey) {
+      message = 'OpenRouter is selected and will be used. A Gemini key is also stored, but it is inactive until you switch providers.';
+    }
+  }
+
+  if (!message) {
+    el.style.display = 'none';
+    return;
+  }
+
+  el.style.display = '';
+  el.style.background = isWarning ? 'rgba(232,39,42,0.14)' : 'rgba(255,255,255,0.08)';
+  el.style.borderColor = isWarning ? 'rgba(232,39,42,0.3)' : 'rgba(255,255,255,0.15)';
+  el.style.color = isWarning ? '#FFCDD2' : '#FFFFFF';
+  el.textContent = message;
 }
 
 function getApiKey() {
