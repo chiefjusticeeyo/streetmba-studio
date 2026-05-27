@@ -3323,7 +3323,7 @@ async function generateTTS(host) {
   btn.innerHTML = '⏳ Generating...';
 
   try {
-    const url = \`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=\${key}\`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${key}`;
     const resp = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -3341,7 +3341,7 @@ async function generateTTS(host) {
 
     if (!resp.ok) {
       const err = await resp.json().catch(() => ({}));
-      throw new Error(err?.error?.message || \`TTS API error \${resp.status}\`);
+      throw new Error(err?.error?.message || `TTS API error ${resp.status}`);
     }
 
     const data = await resp.json();
@@ -3357,7 +3357,7 @@ async function generateTTS(host) {
     audioEl.src = audioUrl;
     audioEl.style.display = 'block';
     audioEl.play();
-    showToast(\`Audio generated for \${host}\`, 'success');
+    showToast(`Audio generated for ${host}`, 'success');
 
   } catch (e) {
     showToast('Audio generation failed: ' + e.message, 'error');
